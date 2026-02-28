@@ -78,12 +78,37 @@
 
     <footer class="border-t bg-white">
       <div class="mx-auto max-w-5xl px-4 py-8 text-sm text-slate-600">
-        © <span id="year"></span> ITG Roger GmbH
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <div>© <span id="year"></span> ITG Roger GmbH</div>
+          <a
+            href="#impressum-content"
+            id="impressum-toggle"
+            class="underline hover:no-underline"
+            aria-controls="impressum-content"
+            aria-expanded="false"
+          >
+            Impressum
+          </a>
+        </div>
+        <div id="impressum-content" class="mt-4 hidden rounded-lg border border-slate-200 bg-slate-50 p-4 text-slate-700">
+          <div><strong>Adresse:</strong> 1020 Wien, Engerthstr. 143</div>
+          <div><strong>UID:</strong> ATU80092917</div>
+          <div><strong>FNr:</strong> 615836t</div>
+        </div>
       </div>
     </footer>
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+      const impressumToggle = document.getElementById("impressum-toggle");
+      const impressumContent = document.getElementById("impressum-content");
+
+      impressumToggle.addEventListener("click", function (event) {
+        event.preventDefault();
+        const isExpanded = impressumToggle.getAttribute("aria-expanded") === "true";
+        impressumToggle.setAttribute("aria-expanded", String(!isExpanded));
+        impressumContent.classList.toggle("hidden");
+      });
     </script>
   </body>
 </html>
